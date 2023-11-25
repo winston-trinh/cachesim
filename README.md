@@ -50,4 +50,4 @@ I'm happy to share my learning journey and experiences in this area or discuss t
 
 Please message me if you would like to talk or share your thoughts. Thank you for taking the time to explore my project!
 
-Contact me: wntrinh@usc.edu
+Contact: [wntrinh@usc.edu](mailto:wntrinh@usc.edu)
