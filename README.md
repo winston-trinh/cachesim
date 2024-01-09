@@ -3,7 +3,7 @@
 I developed this project to demonstrate my understanding of cache memory and its role in improving C program performance. I've written a cache simulator to create a concise and effective program that simulates cache behavior.
 
 ### Purpose
-My cache simulator is a tool that models how cache works. It's particularly useful for visualizing the efficiency of caches in computing. Although this simulator can seem technical, at its core, this project is about improving how quickly and efficiently a computer can access data.
+My cache simulator is a tool that models how cache works. It's a nice way to visualize the efficiency of caches in computing. Although this simulator may seem technical, this project is really about improving how quickly and efficiently a computer can access data.
 
 ## How It Works
 ### Trace Files
@@ -44,7 +44,7 @@ $ ./grade
 ```
 
 ## Where to Start
-I encourage you to look at my `csim.c` file to see how I've approached this problem.  
+Feel free to look at my `csim.c` file to see how I've approached this problem.  
 
 I'm happy to share my learning journey and experiences in this area or discuss the strategies I used to design my cache simulator.
 
