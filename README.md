@@ -27,6 +27,8 @@ Each line represents a memory access, showing the type of access (`I` for instru
 ### Command-Line Interface
 My simulator, which is in the file `csim.c`, imitates the behavior of these caches. It's run using the terminal, and it outputs statistics like the number of hits, misses, and evictions. Here's how you use it:
 
+<a href="#">![](image/cache_sim.png)</a>
+
 ```bash
 ./csim-ref [-hv] -S <S> -K <K> -B <B> -p <P> -t <tracefile>
 ```
