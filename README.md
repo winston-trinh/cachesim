@@ -32,6 +32,29 @@ My simulator, which is in the file `csim.c`, imitates the behavior of these cach
 ```bash
 ./csim-ref [-hv] -S <S> -K <K> -B <B> -p <P> -t <tracefile>
 ```
+- `-h`: Optional help flag that prints usage info
+- `-v`: Optional verbose flag that displays trace info
+- `-S <S>`: Number of sets (`s = log2(S)` is the number of bits used for the set index)
+- `-K <K>`: Number of lines per set (associativity or number of *ways*)
+- `-B <B>`: Number of bytes per line (`b = log2(B)` is the number of bits used for the byte offset within the line)
+- `-p <P>`: Selects a policy, either LRU or FIFO
+- `-t <tracefile>`: Name of the valgrind trace to replay
+
+#### Example in verbose mode that annotates each memory access of the input trace as hit/miss:
+```bash
+./csim-ref -S 16 -K 1 -B 16 -p LRU -v -t traces/yi.trace
+```
+#### Output:
+```bash
+L 10,1 miss
+M 20,1 miss hit
+L 22,1 hit
+S 18,1 hit
+L 110,1 miss eviction
+L 210,1 miss eviction
+M 12,1 miss eviction hit
+hits:4 misses:5 evictions:3
+```
 
 ### Cache Organization
 The simulator is flexible, able to work with various cache sizes and structures. It dynamically allocates memory, and I've implemented both FIFO (First-In, First-Out) and LRU (Least Recently Used) policies for cache eviction.
@@ -42,7 +65,29 @@ I've tested my simulator against different benchmarks, all of which can be found
 To run these tests, I used the command:
 
 ```bash
-$ ./grade
+./grade
+```
+Sample output:
+```bash
+rm -rf csim
+gcc -g -Wall -Werror -std=c11 -o csim csim.c
+==
+>> Running 'direct' tests ... FAILED
+./csim -S 8 -K 1 -B 1 -p LRU -t traces/simple_direct.trace
+EXPECTED: hits:3 misses:3 evictions:0
+  ACTUAL: hits:2 misses:3 evictions:0
+==
+>> Running 'policy' tests ... FAILED
+./csim -S 2 -K 2 -B 2 -p LRU -t traces/simple_policy.trace
+EXPECTED: hits:3 misses:4 evictions:1
+  ACTUAL: hits:2 misses:4 evictions:1
+==
+>> Running 'size' tests ... FAILED
+./csim -S 1 -K 1 -B 2 -p LRU -t traces/simple_size.trace
+EXPECTED: hits:2 misses:6 evictions:5
+  ACTUAL: hits:2 misses:6 evictions:4
+==
+>> SCORE: 0
 ```
 
 ## Where to Start
